@@ -1,0 +1,30 @@
+:host {
+  padding: 10px;
+  max-width: 600px;
+  text-align: center;
+}
+
+.form-container {
+  margin-right: auto;
+  margin-left: auto;
+  padding: 20px 15px 30px;
+  width: 750px;
+  background-color: #ccc;
+}
+
+.todo-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-container > * {
+  width: 100%;
+}
+
+.todo-List {
+  text-align: left;
+  margin-top: 5px;
+  span {
+    display: block;
+  }
+}

@@ -1,0 +1,52 @@
+<form [formGroup]="todoForm" novalidate autocomplete="off">
+  <div class="form-container">
+    <div class="todo-container">
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          placeholder="todo"
+          name="todo"
+          formControlName="todo"
+          required
+        />
+      </mat-form-field>
+      <mat-error *ngFor="let validation of validationMessages.todo">
+        <mat-error
+          *ngIf="
+            todoForm.get('todo')?.hasError(validation.type) &&
+            (todoForm.get('todo')?.dirty || todoForm.get('todo')?.touched)
+          "
+          >{{ validation.message }}</mat-error
+        >
+      </mat-error>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="addtodo($event)"
+        type="submit"
+        [disabled]="!todoForm.valid"
+      >
+        Add Todo
+      </button>
+    </div>
+    <div class="todo-List">
+      <span>Todo</span>
+      <ng-container *ngFor="let todo of todos">
+        <app-todo-item
+          [todo]="todo"
+          (toggleCompleteEvent)="toggleComplete($event)"
+        ></app-todo-item>
+      </ng-container>
+    </div>
+    <div class="todo-List">
+      <span>Completed</span>
+      <ng-container *ngFor="let todo of completedTodos">
+        <app-todo-item
+          [todo]="todo"
+          (toggleCompleteEvent)="toggleComplete($event)"
+        ></app-todo-item>
+      </ng-container>
+    </div>
+  </div>
+</form>
